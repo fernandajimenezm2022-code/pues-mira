@@ -22,7 +22,6 @@ body{
     overflow:hidden;
     font-family:Georgia,serif;
 
-    /* 🌊 FONDO DEL MAR */
     background-image:
         linear-gradient(
             rgba(0,0,20,.18),
@@ -36,9 +35,9 @@ body{
 }
 
 
-/* =================================
-   💌 ESCENA DEL SOBRE
-================================= */
+/* =====================================
+   💌 ESCENA
+===================================== */
 
 .escena{
     position:relative;
@@ -52,8 +51,13 @@ body{
 
     z-index:10;
 
-    transition:opacity .7s ease;
+    transition:opacity .8s ease;
 }
+
+
+/* =====================================
+   💌 SOBRE
+===================================== */
 
 .sobre{
     position:relative;
@@ -67,8 +71,7 @@ body{
         flotar 3s ease-in-out infinite;
 
     transition:
-        opacity .7s ease,
-        transform .7s ease;
+        opacity .7s ease;
 }
 
 .cuerpo{
@@ -155,7 +158,8 @@ body{
     animation:
         latido 1.5s infinite;
 
-    transition:opacity .5s ease;
+    transition:
+        opacity .5s ease;
 }
 
 .instruccion{
@@ -178,13 +182,14 @@ body{
     text-shadow:
         0 2px 5px rgba(0,0,0,.7);
 
-    transition:opacity .5s ease;
+    transition:
+        opacity .5s ease;
 }
 
 
-/* =================================
+/* =====================================
    ✨ ANIMACIONES
-================================= */
+===================================== */
 
 @keyframes flotar{
 
@@ -219,15 +224,29 @@ body{
 }
 
 
-/* =================================
+/* =====================================
    📜 CARTA
-================================= */
+===================================== */
 
 .carta{
 
     position:fixed;
 
-    z-index:1000;
+    /* 🔥 ESTO SOLUCIONA LA DESAPARICIÓN */
+
+    top:50%;
+    left:50%;
+
+    transform:
+        translate(-50%,-50%)
+        translateY(100px)
+        scale(.75)
+        rotateX(-70deg);
+
+    transform-origin:
+        center center;
+
+    z-index:99999;
 
     width:min(88vw,600px);
 
@@ -251,32 +270,17 @@ body{
 
     pointer-events:none;
 
-    transform:
-        translateY(100px)
-        scale(.75)
-        rotateX(-70deg);
-
-    transform-origin:
-        top center;
-
     transition:
         transform 1.2s ease,
         opacity .5s ease;
 
-    /*
-      La barra queda disponible
-      por seguridad, aunque el
-      movimiento será automático.
-    */
-    overflow-y:auto;
-
-    scrollbar-width:auto;
+    overflow:hidden;
 }
 
 
-/* =================================
+/* =====================================
    📖 CARTA ABIERTA
-================================= */
+===================================== */
 
 .carta.abierta{
 
@@ -284,18 +288,19 @@ body{
 
     pointer-events:auto;
 
-    z-index:1000;
+    z-index:99999;
 
     transform:
+        translate(-50%,-50%)
         translateY(0)
         scale(1)
-        rotateX(0);
+        rotateX(0deg);
 }
 
 
-/* =================================
+/* =====================================
    ✍️ TEXTO
-================================= */
+===================================== */
 
 .texto{
 
@@ -315,17 +320,17 @@ body{
 
     white-space:pre-line;
 
-    padding-bottom:100px;
+    padding-bottom:120px;
 
-    animation:none;
+    transform:translateY(0);
 }
 
 
-/* =================================
-   📖 MOVIMIENTO DEL TEXTO
-================================= */
+/* =====================================
+   📖 SUBIR TEXTO
+===================================== */
 
-@keyframes subirCarta{
+@keyframes subirTexto{
 
     0%{
         transform:
@@ -342,9 +347,9 @@ body{
 }
 
 
-/* =================================
+/* =====================================
    💕 FIRMA
-================================= */
+===================================== */
 
 .firma{
 
@@ -365,19 +370,18 @@ body{
     transform:
         rotate(-4deg);
 
-    background:
-        #fffdf4;
+    background:#fffdf4;
 
     padding:
         5px 10px;
 
-    z-index:5;
+    z-index:20;
 }
 
 
-/* =================================
+/* =====================================
    📱 CELULAR
-================================= */
+===================================== */
 
 @media(max-width:500px){
 
@@ -436,9 +440,9 @@ body{
 <body>
 
 
-<!-- =================================
+<!-- =====================================
      💌 SOBRE
-================================= -->
+===================================== -->
 
 <div
     class="escena"
@@ -480,9 +484,9 @@ body{
 
 
 
-<!-- =================================
+<!-- =====================================
      📜 CARTA
-================================= -->
+===================================== -->
 
 <div
     class="carta"
@@ -507,9 +511,9 @@ body{
 <script>
 
 
-/* =================================
+/* =====================================
    ELEMENTOS
-================================= */
+===================================== */
 
 const escena =
 document.getElementById("escena");
@@ -533,9 +537,9 @@ const texto =
 document.getElementById("texto");
 
 
-/* =================================
-   🌊 AUDIO DEL MAR
-================================= */
+/* =====================================
+   🌊 SOLO AUDIO DEL MAR
+===================================== */
 
 const archivoMar =
 "WhatsApp Audio 2026-09-07 at 10.13.51 PM (1).mpeg";
@@ -548,15 +552,20 @@ new Audio(
 mar.loop=true;
 
 /*
-   🔊 MUY BAJITO
+   🔊 MAR MUY BAJITO
 */
 
 mar.volume=0.10;
 
 
-/* =================================
+/*
+   ❌ NO EXISTE NINGÚN AUDIO DEL PAPEL
+*/
+
+
+/* =====================================
    💌 MENSAJE
-================================= */
+===================================== */
 
 const mensaje = `Ojitos,
 
@@ -573,18 +582,18 @@ Espero y esto lo disfrutes mucho porque lo hice por muchooo cariño y NO TE SALT
 Te amo 💕`;
 
 
-/* =================================
+/* =====================================
    ESTADO
-================================= */
+===================================== */
 
 let abierta=false;
 
 let escribiendo=false;
 
 
-/* =================================
-   💌 ABRIR SOBRE
-================================= */
+/* =====================================
+   💌 ABRIR
+===================================== */
 
 sobre.addEventListener(
     "click",
@@ -596,23 +605,31 @@ sobre.addEventListener(
         abierta=true;
 
 
-        /* Abrir tapa */
+        /*
+          Abrir sobre
+        */
 
         tapa.style.transform=
             "rotateX(180deg)";
 
 
-        /* Desaparecer corazón */
+        /*
+          Quitar corazón
+        */
 
         corazon.style.opacity="0";
 
 
-        /* Desaparecer instrucción */
+        /*
+          Quitar instrucción
+        */
 
         instruccion.style.opacity="0";
 
 
-        /* 🌊 Iniciar sonido */
+        /*
+          🌊 EMPEZAR MAR
+        */
 
         mar.currentTime=0;
 
@@ -621,7 +638,9 @@ sobre.addEventListener(
         );
 
 
-        /* Desaparecer sobre */
+        /*
+          Ocultar sobre
+        */
 
         setTimeout(
             ()=>{
@@ -636,7 +655,9 @@ sobre.addEventListener(
         );
 
 
-        /* 📜 Mostrar carta */
+        /*
+          📜 Mostrar carta
+        */
 
         setTimeout(
             ()=>{
@@ -655,9 +676,9 @@ sobre.addEventListener(
 );
 
 
-/* =================================
-   ✍️ ESCRIBIR MENSAJE
-================================= */
+/* =====================================
+   ✍️ ESCRIBIR
+===================================== */
 
 function escribir(){
 
@@ -667,7 +688,8 @@ function escribir(){
 
     texto.style.animation="none";
 
-    carta.scrollTop=0;
+    texto.style.transform=
+        "translateY(0)";
 
     let i=0;
 
@@ -703,41 +725,39 @@ function escribir(){
 }
 
 
-/* =================================
-   📖 SUBIR CARTA
-================================= */
+/* =====================================
+   📖 MOVIMIENTO AUTOMÁTICO
+===================================== */
 
 function iniciarMovimiento(){
 
     /*
-      Esperamos 2 segundos para
-      que alcance a leer el inicio.
+      Espera para leer el principio
     */
 
     setTimeout(
         ()=>{
 
             texto.style.animation=
-                "subirCarta 35s linear forwards";
+                "subirTexto 45s linear forwards";
 
         },
-        2000
+        2500
     );
 
 }
 
 
-/* =================================
+/* =====================================
    👆 CERRAR CARTA
-================================= */
+===================================== */
 
 carta.addEventListener(
     "click",
     function(){
 
         /*
-          No cerrar mientras
-          todavía está escribiendo.
+          No cerrar mientras escribe
         */
 
         if(escribiendo)
@@ -749,17 +769,26 @@ carta.addEventListener(
         );
 
 
-        /* 🌊 Detener mar */
+        /*
+          🌊 detener mar
+        */
 
         mar.pause();
 
 
         /*
-          Reiniciar movimiento
+          Reiniciar texto
         */
 
         texto.style.animation="none";
 
+        texto.style.transform=
+            "translateY(0)";
+
+
+        /*
+          Volver al sobre
+        */
 
         setTimeout(
             ()=>{
@@ -776,9 +805,6 @@ carta.addEventListener(
 
                 instruccion.style.opacity=".8";
 
-                sobre.style.animation=
-                    "flotar 3s ease-in-out infinite";
-
                 abierta=false;
 
             },
@@ -787,6 +813,7 @@ carta.addEventListener(
 
     }
 );
+
 
 </script>
 
