@@ -22,7 +22,7 @@ body{
     overflow:hidden;
     font-family:Georgia,serif;
 
-    /* 🌊 TU FONDO */
+    /* 🌊 FONDO DEL MAR */
     background-image:
         linear-gradient(
             rgba(0,0,20,.18),
@@ -36,11 +36,13 @@ body{
 }
 
 
-/* =========================
-   SOBRE
-========================= */
+/* =================================
+   💌 ESCENA DEL SOBRE
+================================= */
 
 .escena{
+    position:relative;
+
     width:100%;
     height:100vh;
 
@@ -48,7 +50,9 @@ body{
     justify-content:center;
     align-items:center;
 
-    position:relative;
+    z-index:10;
+
+    transition:opacity .7s ease;
 }
 
 .sobre{
@@ -150,6 +154,8 @@ body{
 
     animation:
         latido 1.5s infinite;
+
+    transition:opacity .5s ease;
 }
 
 .instruccion{
@@ -171,12 +177,14 @@ body{
 
     text-shadow:
         0 2px 5px rgba(0,0,0,.7);
+
+    transition:opacity .5s ease;
 }
 
 
-/* =========================
-   ANIMACIONES SOBRE
-========================= */
+/* =================================
+   ✨ ANIMACIONES
+================================= */
 
 @keyframes flotar{
 
@@ -211,15 +219,15 @@ body{
 }
 
 
-/* =========================
-   CARTA
-========================= */
+/* =================================
+   📜 CARTA
+================================= */
 
 .carta{
 
     position:fixed;
 
-    z-index:20;
+    z-index:1000;
 
     width:min(88vw,600px);
 
@@ -256,24 +264,27 @@ body{
         opacity .5s ease;
 
     /*
-      ESTA VEZ SÍ SE PUEDE BAJAR
+      La barra queda disponible
+      por seguridad, aunque el
+      movimiento será automático.
     */
     overflow-y:auto;
 
-    /*
-      dejamos visible la barra
-      para que sepas que hay más texto
-    */
+    scrollbar-width:auto;
 }
 
 
-/* CARTA ABIERTA */
+/* =================================
+   📖 CARTA ABIERTA
+================================= */
 
 .carta.abierta{
 
     opacity:1;
 
     pointer-events:auto;
+
+    z-index:1000;
 
     transform:
         translateY(0)
@@ -282,11 +293,13 @@ body{
 }
 
 
-/* =========================
-   TEXTO
-========================= */
+/* =================================
+   ✍️ TEXTO
+================================= */
 
 .texto{
+
+    position:relative;
 
     color:#403535;
 
@@ -302,23 +315,43 @@ body{
 
     white-space:pre-line;
 
-    padding-bottom:70px;
+    padding-bottom:100px;
+
+    animation:none;
 }
 
 
-/* =========================
-   FIRMA
-========================= */
+/* =================================
+   📖 MOVIMIENTO DEL TEXTO
+================================= */
+
+@keyframes subirCarta{
+
+    0%{
+        transform:
+            translateY(0);
+    }
+
+    100%{
+        transform:
+            translateY(
+                calc(-100% + 300px)
+            );
+    }
+
+}
+
+
+/* =================================
+   💕 FIRMA
+================================= */
 
 .firma{
 
-    position:sticky;
+    position:absolute;
 
-    bottom:0;
-
-    margin-left:auto;
-
-    width:max-content;
+    right:28px;
+    bottom:22px;
 
     color:#624848;
 
@@ -332,15 +365,19 @@ body{
     transform:
         rotate(-4deg);
 
-    background:#fffdf4;
+    background:
+        #fffdf4;
 
-    padding:5px 10px;
+    padding:
+        5px 10px;
+
+    z-index:5;
 }
 
 
-/* =========================
-   CELULAR
-========================= */
+/* =================================
+   📱 CELULAR
+================================= */
 
 @media(max-width:500px){
 
@@ -399,15 +436,21 @@ body{
 <body>
 
 
-<!-- =========================
-     SOBRE
-========================= -->
+<!-- =================================
+     💌 SOBRE
+================================= -->
 
-<div class="escena" id="escena">
+<div
+    class="escena"
+    id="escena">
 
-    <div class="sobre" id="sobre">
+    <div
+        class="sobre"
+        id="sobre">
 
-        <div class="cuerpo"></div>
+        <div
+            class="cuerpo">
+        </div>
 
         <div
             class="tapa"
@@ -437,9 +480,9 @@ body{
 
 
 
-<!-- =========================
-     CARTA
-========================= -->
+<!-- =================================
+     📜 CARTA
+================================= -->
 
 <div
     class="carta"
@@ -464,9 +507,9 @@ body{
 <script>
 
 
-/* =========================
+/* =================================
    ELEMENTOS
-========================= */
+================================= */
 
 const escena =
 document.getElementById("escena");
@@ -490,9 +533,9 @@ const texto =
 document.getElementById("texto");
 
 
-/* =========================
+/* =================================
    🌊 AUDIO DEL MAR
-========================= */
+================================= */
 
 const archivoMar =
 "WhatsApp Audio 2026-09-07 at 10.13.51 PM (1).mpeg";
@@ -505,14 +548,15 @@ new Audio(
 mar.loop=true;
 
 /*
-   MUY BAJITO 🌊
+   🔊 MUY BAJITO
 */
-mar.volume=.10;
+
+mar.volume=0.10;
 
 
-/* =========================
+/* =================================
    💌 MENSAJE
-========================= */
+================================= */
 
 const mensaje = `Ojitos,
 
@@ -529,18 +573,18 @@ Espero y esto lo disfrutes mucho porque lo hice por muchooo cariño y NO TE SALT
 Te amo 💕`;
 
 
-/* =========================
+/* =================================
    ESTADO
-========================= */
+================================= */
 
 let abierta=false;
 
 let escribiendo=false;
 
 
-/* =========================
-   ABRIR SOBRE
-========================= */
+/* =================================
+   💌 ABRIR SOBRE
+================================= */
 
 sobre.addEventListener(
     "click",
@@ -552,25 +596,23 @@ sobre.addEventListener(
         abierta=true;
 
 
-        /* abrir tapa */
+        /* Abrir tapa */
 
         tapa.style.transform=
             "rotateX(180deg)";
 
 
-        /* quitar corazón */
+        /* Desaparecer corazón */
 
         corazon.style.opacity="0";
 
 
-        /* quitar texto */
+        /* Desaparecer instrucción */
 
         instruccion.style.opacity="0";
 
 
-        /*
-          🌊 INICIAR MAR
-        */
+        /* 🌊 Iniciar sonido */
 
         mar.currentTime=0;
 
@@ -579,7 +621,7 @@ sobre.addEventListener(
         );
 
 
-        /* desaparecer sobre */
+        /* Desaparecer sobre */
 
         setTimeout(
             ()=>{
@@ -594,7 +636,7 @@ sobre.addEventListener(
         );
 
 
-        /* mostrar carta */
+        /* 📜 Mostrar carta */
 
         setTimeout(
             ()=>{
@@ -613,9 +655,9 @@ sobre.addEventListener(
 );
 
 
-/* =========================
-   ✍️ ESCRITURA
-========================= */
+/* =================================
+   ✍️ ESCRIBIR MENSAJE
+================================= */
 
 function escribir(){
 
@@ -623,9 +665,7 @@ function escribir(){
 
     texto.textContent="";
 
-    /*
-      empezamos arriba
-    */
+    texto.style.animation="none";
 
     carta.scrollTop=0;
 
@@ -651,6 +691,8 @@ function escribir(){
 
             escribiendo=false;
 
+            iniciarMovimiento();
+
         }
 
     }
@@ -661,17 +703,41 @@ function escribir(){
 }
 
 
-/* =========================
+/* =================================
+   📖 SUBIR CARTA
+================================= */
+
+function iniciarMovimiento(){
+
+    /*
+      Esperamos 2 segundos para
+      que alcance a leer el inicio.
+    */
+
+    setTimeout(
+        ()=>{
+
+            texto.style.animation=
+                "subirCarta 35s linear forwards";
+
+        },
+        2000
+    );
+
+}
+
+
+/* =================================
    👆 CERRAR CARTA
-========================= */
+================================= */
 
 carta.addEventListener(
     "click",
     function(){
 
         /*
-          Si todavía está escribiendo,
-          no la cerramos accidentalmente.
+          No cerrar mientras
+          todavía está escribiendo.
         */
 
         if(escribiendo)
@@ -683,9 +749,16 @@ carta.addEventListener(
         );
 
 
-        /* detener mar */
+        /* 🌊 Detener mar */
 
         mar.pause();
+
+
+        /*
+          Reiniciar movimiento
+        */
+
+        texto.style.animation="none";
 
 
         setTimeout(
