@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Para ti 💌</title>
 
 <style>
@@ -19,204 +20,176 @@ html,body{
 
 body{
     overflow:hidden;
-    background:#061526;
     font-family:Georgia,serif;
-}
 
-/* =========================
-   MAR DE NOCHE
-========================= */
-
-.fondo{
-    position:fixed;
-    inset:0;
-    overflow:hidden;
-    background:
-        linear-gradient(
-            to bottom,
-            #020817 0%,
-            #071b31 45%,
-            #0b3045 68%,
-            #061a2b 100%
-        );
-}
-
-/* Luna */
-
-.luna{
-    position:absolute;
-    width:75px;
-    height:75px;
-    border-radius:50%;
-    background:#fff7d6;
-    top:10%;
-    right:13%;
-    box-shadow:
-        0 0 25px rgba(255,247,214,.7),
-        0 0 70px rgba(255,247,214,.25);
-}
-
-/* Estrellas */
-
-.estrellas{
-    position:absolute;
-    inset:0;
+    /* 🌊 TU FONDO */
     background-image:
-        radial-gradient(circle at 10% 20%,white 1px,transparent 2px),
-        radial-gradient(circle at 25% 12%,white 1px,transparent 2px),
-        radial-gradient(circle at 38% 25%,white 1px,transparent 2px),
-        radial-gradient(circle at 55% 10%,white 1px,transparent 2px),
-        radial-gradient(circle at 67% 22%,white 1px,transparent 2px),
-        radial-gradient(circle at 82% 12%,white 1px,transparent 2px),
-        radial-gradient(circle at 90% 30%,white 1px,transparent 2px),
-        radial-gradient(circle at 15% 38%,white 1px,transparent 2px),
-        radial-gradient(circle at 47% 40%,white 1px,transparent 2px),
-        radial-gradient(circle at 75% 42%,white 1px,transparent 2px);
-    opacity:.7;
-}
-
-/* Agua */
-
-.mar{
-    position:absolute;
-    left:-10%;
-    right:-10%;
-    bottom:-5%;
-    height:42%;
-    background:
-        repeating-linear-gradient(
-            0deg,
-            rgba(120,210,230,.10) 0px,
-            rgba(120,210,230,.10) 2px,
-            transparent 2px,
-            transparent 13px
-        ),
         linear-gradient(
-            to bottom,
-            #0a3347,
-            #031a2b
-        );
-    border-radius:50% 50% 0 0;
+            rgba(0,0,20,.18),
+            rgba(0,0,20,.18)
+        ),
+        url("WhatsApp%20Image%202026-09-08%20at%2010.16.25%20AM.jpeg");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
 }
 
-/* Reflejo de luna */
-
-.reflejo{
-    position:absolute;
-    width:150px;
-    height:260px;
-    right:10%;
-    bottom:7%;
-    background:linear-gradient(
-        to bottom,
-        rgba(255,248,205,.20),
-        rgba(255,248,205,.04),
-        transparent
-    );
-    filter:blur(5px);
-    transform:rotate(4deg);
-}
-
-/* =========================
-   ESCENA
-========================= */
-
-.escena{
-    position:relative;
-    width:100%;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    z-index:5;
-}
 
 /* =========================
    SOBRE
 ========================= */
 
+.escena{
+    width:100%;
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    position:relative;
+}
+
 .sobre{
     position:relative;
+
     width:300px;
     height:190px;
+
     cursor:pointer;
-    animation:flotar 3s ease-in-out infinite;
+
+    animation:
+        flotar 3s ease-in-out infinite;
+
     transition:
-        transform .8s ease,
-        opacity .7s ease;
+        opacity .7s ease,
+        transform .7s ease;
 }
 
 .cuerpo{
     position:absolute;
+
     inset:0;
-    background:linear-gradient(
-        145deg,
-        #fffaf5,
-        #e8c9ca
-    );
-    border-radius:6px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fffaf7,
+            #e9c9ca
+        );
+
+    border-radius:7px;
+
     box-shadow:
         0 20px 50px rgba(0,0,0,.45);
+
     overflow:hidden;
 }
 
 .cuerpo:after{
     content:"";
+
     position:absolute;
+
     left:0;
     bottom:0;
+
     width:0;
     height:0;
-    border-left:150px solid transparent;
-    border-right:150px solid transparent;
-    border-bottom:105px solid #dfb9bc;
+
+    border-left:
+        150px solid transparent;
+
+    border-right:
+        150px solid transparent;
+
+    border-bottom:
+        105px solid #dfb9bc;
 }
 
 .tapa{
     position:absolute;
+
     left:0;
     top:0;
+
     width:0;
     height:0;
-    border-left:150px solid transparent;
-    border-right:150px solid transparent;
-    border-top:105px solid #f1d5d5;
-    transform-origin:top center;
-    transition:transform 1s ease;
+
+    border-left:
+        150px solid transparent;
+
+    border-right:
+        150px solid transparent;
+
+    border-top:
+        105px solid #f2d5d5;
+
+    transform-origin:
+        top center;
+
+    transition:
+        transform 1s ease;
+
     z-index:6;
 }
 
 .corazon{
     position:absolute;
+
     left:50%;
     top:55%;
-    transform:translate(-50%,-50%);
-    font-size:44px;
+
+    transform:
+        translate(-50%,-50%);
+
+    font-size:45px;
+
     z-index:8;
-    animation:latido 1.5s infinite;
+
+    animation:
+        latido 1.5s infinite;
 }
 
 .instruccion{
     position:absolute;
+
     bottom:32px;
     left:50%;
-    transform:translateX(-50%);
-    color:#fff;
-    font-family:"Segoe Print",cursive;
+
+    transform:
+        translateX(-50%);
+
+    color:white;
+
+    font-family:
+        "Segoe Print",
+        cursive;
+
     font-size:15px;
-    opacity:.8;
+
+    text-shadow:
+        0 2px 5px rgba(0,0,0,.7);
 }
 
-/* Animaciones */
+
+/* =========================
+   ANIMACIONES SOBRE
+========================= */
 
 @keyframes flotar{
 
     0%,100%{
-        transform:translateY(0) rotate(0);
+        transform:
+            translateY(0)
+            rotate(0);
     }
 
     50%{
-        transform:translateY(-10px) rotate(1deg);
+        transform:
+            translateY(-10px)
+            rotate(1deg);
     }
 
 }
@@ -224,127 +197,96 @@ body{
 @keyframes latido{
 
     0%,100%{
-        transform:translate(-50%,-50%) scale(1);
+        transform:
+            translate(-50%,-50%)
+            scale(1);
     }
 
     50%{
-        transform:translate(-50%,-50%) scale(1.12);
+        transform:
+            translate(-50%,-50%)
+            scale(1.12);
     }
 
 }
+
 
 /* =========================
    CARTA
 ========================= */
 
 .carta{
+
     position:fixed;
+
     z-index:20;
 
     width:min(88vw,600px);
+
     height:min(82vh,720px);
 
-    padding:48px 42px;
+    padding:
+        45px
+        40px
+        80px;
 
     background:
-        radial-gradient(
-            ellipse at 30% 20%,
-            rgba(130,90,50,.07),
-            transparent 25%
-        ),
-        radial-gradient(
-            ellipse at 80% 75%,
-            rgba(130,90,50,.06),
-            transparent 30%
-        ),
-        repeating-linear-gradient(
-            0deg,
-            rgba(100,70,40,.025) 0px,
-            rgba(100,70,40,.025) 1px,
-            transparent 1px,
-            transparent 5px
-        ),
-        #fffdf2;
+        #fffdf4;
 
     box-shadow:
-        0 30px 70px rgba(0,0,0,.5),
-        inset 0 0 40px rgba(100,70,40,.08);
+        0 25px 60px
+        rgba(0,0,0,.5);
+
+    border-radius:3px;
 
     opacity:0;
+
     pointer-events:none;
 
     transform:
-        perspective(1200px)
-        rotateX(-85deg)
-        rotateY(8deg)
         translateY(100px)
-        scale(.65);
+        scale(.75)
+        rotateX(-70deg);
 
-    transform-origin:top center;
+    transform-origin:
+        top center;
 
     transition:
-        transform 1.3s cubic-bezier(.2,.8,.2,1),
+        transform 1.2s ease,
         opacity .5s ease;
 
+    /*
+      ESTA VEZ SÍ SE PUEDE BAJAR
+    */
     overflow-y:auto;
-    scrollbar-width:none;
 
-    clip-path:polygon(
-        1% 1%,
-        99% 0%,
-        100% 99%,
-        1% 100%,
-        0% 3%
-    );
+    /*
+      dejamos visible la barra
+      para que sepas que hay más texto
+    */
 }
 
-/* Ocultar barra */
 
-.carta::-webkit-scrollbar{
-    display:none;
-}
-
-/* Carta abierta */
+/* CARTA ABIERTA */
 
 .carta.abierta{
+
     opacity:1;
+
     pointer-events:auto;
 
     transform:
-        perspective(1200px)
-        rotateX(0)
-        rotateY(0)
         translateY(0)
-        scale(1);
+        scale(1)
+        rotateX(0);
 }
 
-/* =========================
-   PAPEL REALISTA
-========================= */
-
-.carta::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    pointer-events:none;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(80,50,20,.08),
-            transparent 8%,
-            transparent 92%,
-            rgba(80,50,20,.06)
-        );
-}
 
 /* =========================
    TEXTO
 ========================= */
 
 .texto{
-    position:relative;
-    z-index:2;
 
     color:#403535;
 
@@ -353,21 +295,30 @@ body{
         "Bradley Hand",
         cursive;
 
-    font-size:clamp(15px,2.5vw,20px);
+    font-size:
+        clamp(15px,2.5vw,20px);
+
     line-height:1.75;
 
     white-space:pre-line;
 
-    padding-bottom:75px;
+    padding-bottom:70px;
 }
 
-/* Firma */
+
+/* =========================
+   FIRMA
+========================= */
 
 .firma{
-    position:absolute;
 
-    right:28px;
-    bottom:22px;
+    position:sticky;
+
+    bottom:0;
+
+    margin-left:auto;
+
+    width:max-content;
 
     color:#624848;
 
@@ -378,8 +329,14 @@ body{
 
     font-size:17px;
 
-    transform:rotate(-4deg);
+    transform:
+        rotate(-4deg);
+
+    background:#fffdf4;
+
+    padding:5px 10px;
 }
+
 
 /* =========================
    CELULAR
@@ -388,36 +345,49 @@ body{
 @media(max-width:500px){
 
     .sobre{
+
         width:270px;
         height:170px;
     }
 
     .tapa{
+
         border-left-width:135px;
         border-right-width:135px;
         border-top-width:90px;
     }
 
     .cuerpo:after{
+
         border-left-width:135px;
         border-right-width:135px;
         border-bottom-width:95px;
     }
 
     .carta{
+
         width:91vw;
-        height:79vh;
-        padding:38px 27px;
+
+        height:80vh;
+
+        padding:
+            35px
+            27px
+            75px;
     }
 
     .texto{
+
         font-size:15px;
+
         line-height:1.7;
     }
 
     .firma{
+
         font-size:14px;
-        right:20px;
+
+        right:15px;
     }
 
 }
@@ -425,19 +395,13 @@ body{
 </style>
 </head>
 
+
 <body>
 
-<!-- FONDO -->
 
-<div class="fondo">
-    <div class="estrellas"></div>
-    <div class="luna"></div>
-    <div class="mar"></div>
-    <div class="reflejo"></div>
-</div>
-
-
-<!-- SOBRE -->
+<!-- =========================
+     SOBRE
+========================= -->
 
 <div class="escena" id="escena">
 
@@ -445,37 +409,64 @@ body{
 
         <div class="cuerpo"></div>
 
-        <div class="tapa" id="tapa"></div>
+        <div
+            class="tapa"
+            id="tapa">
+        </div>
 
-        <div class="corazon" id="corazon">
+        <div
+            class="corazon"
+            id="corazon">
+
             💌
+
         </div>
 
     </div>
 
-    <div class="instruccion" id="instruccion">
+
+    <div
+        class="instruccion"
+        id="instruccion">
+
         Toca el sobre 💕
+
     </div>
 
 </div>
 
 
-<!-- CARTA -->
 
-<div class="carta" id="carta">
+<!-- =========================
+     CARTA
+========================= -->
 
-    <div class="texto" id="texto"></div>
+<div
+    class="carta"
+    id="carta">
 
-    <div class="firma">
-        Con amor, Daniela 💕
+    <div
+        class="texto"
+        id="texto">
+    </div>
+
+    <div
+        class="firma">
+
+        AMOR, DANIELA 💕
+
     </div>
 
 </div>
 
 
-<!-- SOLO AUDIO DEL MAR -->
 
 <script>
+
+
+/* =========================
+   ELEMENTOS
+========================= */
 
 const escena =
 document.getElementById("escena");
@@ -500,32 +491,38 @@ document.getElementById("texto");
 
 
 /* =========================
-   AUDIO DEL MAR
+   🌊 AUDIO DEL MAR
 ========================= */
 
 const archivoMar =
 "WhatsApp Audio 2026-09-07 at 10.13.51 PM (1).mpeg";
 
-const marAudio =
-new Audio(encodeURI(archivoMar));
+const mar =
+new Audio(
+    encodeURI(archivoMar)
+);
 
-marAudio.loop = true;
-marAudio.volume = 0.10;
+mar.loop=true;
+
+/*
+   MUY BAJITO 🌊
+*/
+mar.volume=.10;
 
 
 /* =========================
-   MENSAJE
+   💌 MENSAJE
 ========================= */
 
 const mensaje = `Ojitos,
 
-sé que no estamos en plan de nada y así, pero quiero dedicarte algo que recuerdes siempre.
+sé que no estamos en plan de nada y así pero quiero dedicarte algo que recuerdes siempre.
 
-No estamos juntas presencialmente, pero no es una excusa para no hacer cosas por la persona que quelessh. 🥰💕
+No estamos juntas presencialmente pero no es una excusa para no hacer cosas por la persona que quelessh. 🥰💕
 
 Esto es una pequeña muestra de mi amor por ti.
 
-Sé que tal vez no te sepas expresar y todo eso, pero yo sé que puedo lograr que lo hagas conmigo. Solo se necesita tiempo y mucho, muchooo cariño.
+Sé que tal vez no te sepas expresar y todo eso pero yo sé que puedo lograr que lo hagas conmigo, solo se necesita tiempo y mucho muchooo cariño.
 
 Espero y esto lo disfrutes mucho porque lo hice por muchooo cariño y NO TE SALTES NADA porque aún faltan eeeh. 🫰🏽
 
@@ -536,61 +533,88 @@ Te amo 💕`;
    ESTADO
 ========================= */
 
-let abierta = false;
-let escribiendo = false;
+let abierta=false;
+
+let escribiendo=false;
 
 
 /* =========================
-   ABRIR
+   ABRIR SOBRE
 ========================= */
 
-sobre.addEventListener("click",function(){
+sobre.addEventListener(
+    "click",
+    function(){
 
-    if(abierta) return;
+        if(abierta)
+            return;
 
-    abierta=true;
+        abierta=true;
 
-    /* abrir sobre */
 
-    tapa.style.transform =
-        "rotateX(180deg)";
+        /* abrir tapa */
 
-    corazon.style.opacity="0";
+        tapa.style.transform=
+            "rotateX(180deg)";
 
-    /* desaparecer instrucción */
 
-    instruccion.style.opacity="0";
+        /* quitar corazón */
 
-    /* sonido del mar */
+        corazon.style.opacity="0";
 
-    marAudio.currentTime=0;
 
-    marAudio.play().catch(()=>{});
+        /* quitar texto */
 
-    /* sacar sobre */
+        instruccion.style.opacity="0";
 
-    setTimeout(()=>{
 
-        escena.style.opacity="0";
-        escena.style.pointerEvents="none";
+        /*
+          🌊 INICIAR MAR
+        */
 
-    },650);
+        mar.currentTime=0;
 
-    /* aparecer carta */
+        mar.play().catch(
+            ()=>{}
+        );
 
-    setTimeout(()=>{
 
-        carta.classList.add("abierta");
+        /* desaparecer sobre */
 
-        escribir();
+        setTimeout(
+            ()=>{
 
-    },750);
+                escena.style.opacity="0";
 
-});
+                escena.style.pointerEvents=
+                    "none";
+
+            },
+            600
+        );
+
+
+        /* mostrar carta */
+
+        setTimeout(
+            ()=>{
+
+                carta.classList.add(
+                    "abierta"
+                );
+
+                escribir();
+
+            },
+            750
+        );
+
+    }
+);
 
 
 /* =========================
-   ESCRITURA
+   ✍️ ESCRITURA
 ========================= */
 
 function escribir(){
@@ -599,9 +623,16 @@ function escribir(){
 
     texto.textContent="";
 
+    /*
+      empezamos arriba
+    */
+
+    carta.scrollTop=0;
+
     let i=0;
 
-    function escribirCaracter(){
+
+    function siguiente(){
 
         if(i < mensaje.length){
 
@@ -611,11 +642,12 @@ function escribir(){
             i++;
 
             setTimeout(
-                escribirCaracter,
+                siguiente,
                 25
             );
 
-        }else{
+        }
+        else{
 
             escribiendo=false;
 
@@ -623,49 +655,65 @@ function escribir(){
 
     }
 
-    escribirCaracter();
+
+    siguiente();
 
 }
 
 
 /* =========================
-   CERRAR
+   👆 CERRAR CARTA
 ========================= */
 
-carta.addEventListener("click",function(){
+carta.addEventListener(
+    "click",
+    function(){
 
-    /* no cerrar mientras escribe */
+        /*
+          Si todavía está escribiendo,
+          no la cerramos accidentalmente.
+        */
 
-    if(escribiendo) return;
+        if(escribiendo)
+            return;
 
-    carta.classList.remove("abierta");
 
-    marAudio.pause();
+        carta.classList.remove(
+            "abierta"
+        );
 
-    setTimeout(()=>{
 
-        escena.style.opacity="1";
-        escena.style.pointerEvents="auto";
+        /* detener mar */
 
-        tapa.style.transform =
-            "rotateX(0deg)";
+        mar.pause();
 
-        corazon.style.opacity="1";
 
-        instruccion.style.opacity=".8";
+        setTimeout(
+            ()=>{
 
-        sobre.style.animation =
-            "flotar 3s ease-in-out infinite";
+                escena.style.opacity="1";
 
-        abierta=false;
+                escena.style.pointerEvents=
+                    "auto";
 
-        /* volver arriba de la carta */
+                tapa.style.transform=
+                    "rotateX(0deg)";
 
-        carta.scrollTop=0;
+                corazon.style.opacity="1";
 
-    },1000);
+                instruccion.style.opacity=".8";
 
-});
+                sobre.style.animation=
+                    "flotar 3s ease-in-out infinite";
+
+                abierta=false;
+
+            },
+            1000
+        );
+
+    }
+);
 
 </script>
 
