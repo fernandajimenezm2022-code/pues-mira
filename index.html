@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para ti 💌</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: Georgia, serif;
+    background: linear-gradient(135deg, #dff6ff, #fff4e6);
+}
+
+/* MAR */
+#mar {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background:
+        linear-gradient(rgba(255,255,255,.35), rgba(255,255,255,.35)),
+        url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80")
+        center/cover;
+}
+
+/* SOBRE */
+.sobre {
+    width: 330px;
+    height: 220px;
+    position: relative;
+    cursor: pointer;
+    transition: transform .5s ease;
+    animation: flotar 3s ease-in-out infinite;
+}
+
+.sobre:hover {
+    transform: scale(1.04);
+}
+
+@keyframes flotar {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+.base {
+    position: absolute;
+    inset: 0;
+    background: #f7dfbd;
+    border-radius: 8px;
+    box-shadow: 0 15px 35px rgba(0,0,0,.2);
+}
+
+.base::before,
+.base::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 50%;
+    height: 100%;
+    background: #efd0a7;
+}
+
+.base::before {
+    left: 0;
+    clip-path: polygon(0 0, 100% 100%, 0 100%);
+}
+
+.base::after {
+    right: 0;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+/* TAPA */
+.tapa {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: #f3d5ad;
+    clip-path: polygon(0 0, 50% 100%, 100% 0);
+    transform-origin: top;
+    transition: transform 1s ease;
+    z-index: 4;
+}
+
+/* CARTA */
+.carta {
+    position: absolute;
+    width: 285px;
+    height: 350px;
+    background: #fffaf0;
+    left: 22px;
+    top: -55px;
+    padding: 35px 25px;
+    border-radius: 5px;
+    box-shadow: 0 12px 30px rgba(0,0,0,.25);
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s ease;
+    z-index: 2;
+    overflow-y: auto;
+}
+
+.carta h1 {
+    text-align: center;
+    font-size: 25px;
+    color: #426b75;
+    margin-top: 0;
+}
+
+.carta p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #4d4d4d;
+}
+
+.firma {
+    text-align: right;
+    margin-top: 25px;
+    font-style: italic;
+}
+
+/* ABIERTO */
+.abierto .tapa {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+.abierto .carta {
+    opacity: 1;
+    transform: translateY(-100px);
+    z-index: 5;
+}
+
+/* INDICACIÓN */
+.mensaje {
+    position: absolute;
+    bottom: -70px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    text-shadow: 0 2px 5px rgba(0,0,0,.5);
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="mar"></div>
+
+<div class="sobre" id="sobre">
+
+    <div class="carta">
+        <h1>Para ti 🤍</h1>
+
+        <p>
+            Hay cosas que a veces no sé cómo decir,
+            así que decidí escribirlas.
+        </p>
+
+        <p>
+            Quería hacerte algo diferente,
+            algo que pudieras abrir poquito a poquito
+            y que te sacara una sonrisa.
+        </p>
+
+        <p>
+            Gracias por todos esos momentos,
+            por las canciones, las palabras
+            y por formar parte de mi historia.
+        </p>
+
+        <p class="firma">
+            Con cariño,<br>
+            Fer 💌
+        </p>
+    </div>
+
+    <div class="base"></div>
+    <div class="tapa"></div>
+
+    <div class="mensaje">
+        Toca el sobre 💌
+    </div>
+
+</div>
+
+<audio id="marAudio" loop>
+    <source src="WhatsApp Audio 2026-09-07 at 10.13.51 PM.mpeg" type="audio/mpeg">
+</audio>
+
+<audio id="papelAudio">
+    <source src="WhatsApp Audio 2026-09-07 at 10.13.52 PM.mpeg" type="audio/mpeg">
+</audio>
+
+<script>
+
+const sobre = document.getElementById("sobre");
+const marAudio = document.getElementById("marAudio");
+const papelAudio = document.getElementById("papelAudio");
+
+let abierto = false;
+
+sobre.addEventListener("click", () => {
+
+    abierto = !abierto;
+
+    if (abierto) {
+
+        sobre.classList.add("abierto");
+
+        papelAudio.currentTime = 0;
+        papelAudio.play();
+
+        marAudio.volume = 0.12;
+        marAudio.play();
+
+    } else {
+
+        sobre.classList.remove("abierto");
+
+        papelAudio.currentTime = 0;
+        papelAudio.play();
+    }
+
+});
+
+</script>
+
+</body>
+</html>
