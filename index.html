@@ -3,253 +3,386 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Para ti 💌</title>
 
 <style>
 
-* {
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
 }
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    overflow: hidden;
-    font-family: Georgia, serif;
-    background: linear-gradient(135deg, #dff6ff, #fff4e6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+html,body{
+    margin:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
 }
 
-/* Fondo */
-
-.fondo {
-    position: fixed;
-    inset: 0;
+body{
+    font-family:Georgia, serif;
     background:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,.8), transparent 30%),
-        radial-gradient(circle at 80% 80%, rgba(255,255,255,.7), transparent 30%);
-    z-index: -1;
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.8), transparent 25%),
+        linear-gradient(135deg,#dff6ff,#fff4e6);
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
-/* Corazones */
+/* =========================
+   FONDO
+========================= */
 
-.corazon {
-    position: fixed;
-    font-size: 20px;
-    opacity: .35;
-    animation: flotar 7s linear infinite;
+.fondo{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
 }
 
-.c1 { left: 10%; animation-delay: 0s; }
-.c2 { left: 25%; animation-delay: 2s; }
-.c3 { left: 70%; animation-delay: 1s; }
-.c4 { left: 85%; animation-delay: 3s; }
+.burbujas{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:
+        radial-gradient(circle at 15% 20%,rgba(255,255,255,.35),transparent 4%),
+        radial-gradient(circle at 80% 30%,rgba(255,255,255,.3),transparent 5%),
+        radial-gradient(circle at 40% 80%,rgba(255,255,255,.25),transparent 4%);
+}
 
-@keyframes flotar {
-    0% {
-        transform: translateY(100vh) rotate(0deg);
+/* =========================
+   SOBRE
+========================= */
+
+.contenedor{
+    position:relative;
+    width:340px;
+    height:250px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    z-index:10;
+}
+
+.sobre{
+    position:relative;
+    width:300px;
+    height:190px;
+    background:linear-gradient(145deg,#fffafa,#f1dada);
+    border-radius:5px;
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.18),
+        inset 0 0 20px rgba(255,255,255,.7);
+    transition:transform .8s ease;
+    animation:flotar 3s ease-in-out infinite;
+}
+
+/* parte frontal */
+
+.sobre::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:0;
+    height:0;
+    border-left:150px solid transparent;
+    border-right:150px solid transparent;
+    border-bottom:100px solid #e8c6c6;
+}
+
+/* lados */
+
+.sobre::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(145deg,transparent 49%,rgba(190,150,150,.35) 50%,transparent 51%),
+        linear-gradient(215deg,transparent 49%,rgba(190,150,150,.35) 50%,transparent 51%);
+    border-radius:5px;
+}
+
+/* tapa del sobre */
+
+.tapa{
+    position:absolute;
+    top:0;
+    left:0;
+    width:0;
+    height:0;
+    border-left:150px solid transparent;
+    border-right:150px solid transparent;
+    border-top:100px solid #f5dddd;
+    transform-origin:top center;
+    transition:transform 1s ease;
+    z-index:5;
+    filter:drop-shadow(0 3px 2px rgba(0,0,0,.08));
+}
+
+/* corazón */
+
+.corazon{
+    position:absolute;
+    z-index:7;
+    left:50%;
+    top:53%;
+    transform:translate(-50%,-50%);
+    font-size:45px;
+    filter:drop-shadow(0 5px 5px rgba(0,0,0,.15));
+    transition:opacity .4s ease;
+}
+
+/* movimiento del sobre */
+
+@keyframes flotar{
+
+    0%,100%{
+        transform:translateY(0) rotate(0deg);
     }
 
-    100% {
-        transform: translateY(-120vh) rotate(360deg);
-    }
-}
-
-/* Contenedor */
-
-.contenedor {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-/* Sobre */
-
-.sobre {
-    width: 300px;
-    height: 210px;
-    position: relative;
-    cursor: pointer;
-    transition: transform .4s ease;
-}
-
-.sobre:hover {
-    transform: scale(1.04);
-}
-
-/* Cuerpo del sobre */
-
-.cuerpo {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #fffaf3;
-    border-radius: 8px;
-    box-shadow: 0 15px 35px rgba(0,0,0,.2);
-    overflow: hidden;
-}
-
-/* Parte triangular */
-
-.cuerpo::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0;
-    height: 0;
-    border-left: 150px solid transparent;
-    border-right: 150px solid transparent;
-    border-bottom: 110px solid #f4d7c5;
-}
-
-/* Tapa */
-
-.tapa {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 0;
-    border-left: 150px solid transparent;
-    border-right: 150px solid transparent;
-    border-top: 115px solid #f1cbb7;
-    transform-origin: top;
-    transition: transform 1s ease;
-    z-index: 5;
-}
-
-/* Corazón */
-
-.corazonSobre {
-    position: absolute;
-    z-index: 6;
-    left: 50%;
-    top: 52%;
-    transform: translate(-50%, -50%);
-    font-size: 42px;
-    animation: latido 1.5s infinite;
-}
-
-@keyframes latido {
-
-    0%,100% {
-        transform: translate(-50%, -50%) scale(1);
+    50%{
+        transform:translateY(-9px) rotate(1deg);
     }
 
-    50% {
-        transform: translate(-50%, -50%) scale(1.15);
+}
+
+/* =========================
+   CARTA
+========================= */
+
+.carta{
+    position:fixed;
+    z-index:30;
+
+    width:min(88vw,600px);
+    height:min(82vh,720px);
+
+    background:
+        linear-gradient(rgba(255,255,255,.25),rgba(255,255,255,.25)),
+        repeating-linear-gradient(
+            0deg,
+            rgba(120,80,40,.025) 0px,
+            rgba(120,80,40,.025) 1px,
+            transparent 1px,
+            transparent 4px
+        ),
+        #fffdf5;
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.35),
+        inset 0 0 45px rgba(150,120,80,.08);
+
+    padding:55px 50px;
+
+    opacity:0;
+    pointer-events:none;
+
+    transform:
+        perspective(1200px)
+        rotateX(-80deg)
+        rotateY(8deg)
+        translateY(80px)
+        scale(.75);
+
+    transform-origin:top center;
+
+    transition:
+        transform 1.2s cubic-bezier(.2,.8,.2,1),
+        opacity .5s ease;
+
+    overflow:hidden;
+
+    /* borde ligeramente irregular */
+    clip-path:polygon(
+        1% 1%,
+        99% 0%,
+        100% 99%,
+        0% 100%,
+        0% 3%
+    );
+}
+
+.carta.abierta{
+
+    opacity:1;
+
+    pointer-events:auto;
+
+    transform:
+        perspective(1200px)
+        rotateX(0deg)
+        rotateY(0deg)
+        translateY(0)
+        scale(1);
+
+}
+
+/* textura del papel */
+
+.carta::before{
+
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+        radial-gradient(
+            circle at 20% 30%,
+            rgba(120,90,50,.07),
+            transparent 18%
+        ),
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(120,90,50,.05),
+            transparent 20%
+        );
+
+}
+
+/* =========================
+   TEXTO
+========================= */
+
+.texto{
+
+    position:relative;
+
+    width:100%;
+    height:100%;
+
+    color:#443838;
+
+    font-family:
+        "Segoe Print",
+        "Bradley Hand",
+        "Comic Sans MS",
+        cursive;
+
+    font-size:clamp(15px,2.5vw,21px);
+
+    line-height:1.8;
+
+    text-align:left;
+
+    white-space:pre-line;
+
+}
+
+/* firma */
+
+.firma{
+
+    position:absolute;
+
+    right:20px;
+    bottom:10px;
+
+    font-size:clamp(14px,2vw,18px);
+
+    font-family:
+        "Segoe Print",
+        "Bradley Hand",
+        cursive;
+
+    transform:rotate(-4deg);
+
+    color:#624848;
+
+}
+
+/* =========================
+   MENSAJE INICIAL
+========================= */
+
+.instruccion{
+
+    position:absolute;
+
+    bottom:35px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    color:#704f55;
+
+    font-family:
+        "Segoe Print",
+        cursive;
+
+    font-size:16px;
+
+    text-align:center;
+
+    animation:pulso 2s infinite;
+
+}
+
+@keyframes pulso{
+
+    0%,100%{
+        opacity:.55;
     }
-}
 
-/* Texto */
-
-.textoSobre {
-    position: absolute;
-    bottom: 18px;
-    width: 100%;
-    text-align: center;
-    color: #9c6b5b;
-    font-size: 15px;
-    z-index: 7;
-}
-
-/* Carta */
-
-.carta {
-    position: absolute;
-    width: min(88%, 520px);
-    height: min(78vh, 650px);
-    background: #fffdf7;
-    border-radius: 8px;
-    box-shadow: 0 20px 50px rgba(0,0,0,.25);
-    padding: 35px 30px;
-    overflow-y: auto;
-    opacity: 0;
-    transform: scale(.4) translateY(100px);
-    pointer-events: none;
-    transition: all 1s ease;
-    z-index: 10;
-}
-
-/* Carta abierta */
-
-.abierto .sobre {
-    transform: scale(.2);
-    opacity: 0;
-    pointer-events: none;
-}
-
-.abierto .tapa {
-    transform: rotateX(180deg);
-}
-
-.abierto .carta {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-    pointer-events: auto;
-}
-
-/* Texto de la carta */
-
-.titulo {
-    text-align: center;
-    color: #a75d6b;
-    font-size: 27px;
-    margin-bottom: 25px;
-}
-
-.carta p {
-    color: #4d4141;
-    font-size: 17px;
-    line-height: 1.8;
-    margin-bottom: 18px;
-}
-
-.firma {
-    text-align: right;
-    margin-top: 35px;
-    color: #a75d6b;
-    font-size: 20px;
-    font-style: italic;
-}
-
-/* Instrucción */
-
-.instruccion {
-    position: absolute;
-    bottom: 35px;
-    color: #8f7770;
-    font-size: 14px;
-    animation: aparecer 2s infinite alternate;
-}
-
-@keyframes aparecer {
-    from {
-        opacity: .4;
+    50%{
+        opacity:1;
     }
 
-    to {
-        opacity: 1;
-    }
 }
 
-/* Botón de cerrar */
+/* =========================
+   RESPONSIVE
+========================= */
 
-.cerrar {
-    position: absolute;
-    right: 18px;
-    top: 15px;
-    border: none;
-    background: transparent;
-    font-size: 25px;
-    color: #a75d6b;
-    cursor: pointer;
+@media(max-width:500px){
+
+    .sobre{
+        width:270px;
+        height:170px;
+    }
+
+    .tapa{
+        border-left-width:135px;
+        border-right-width:135px;
+        border-top-width:90px;
+    }
+
+    .sobre::after{
+        border-left-width:135px;
+        border-right-width:135px;
+        border-bottom-width:90px;
+    }
+
+    .carta{
+
+        width:90vw;
+        height:78vh;
+
+        padding:40px 28px;
+
+    }
+
+    .texto{
+
+        font-size:15px;
+        line-height:1.65;
+
+    }
+
+}
+
+/* ocultar sobre */
+
+.oculto{
+
+    opacity:0;
+    pointer-events:none;
+
 }
 
 </style>
@@ -257,157 +390,215 @@ body {
 
 <body>
 
-<div class="fondo"></div>
+<div class="fondo">
+    <div class="burbujas"></div>
+</div>
 
-<div class="corazon c1">♡</div>
-<div class="corazon c2">♡</div>
-<div class="corazon c3">♡</div>
-<div class="corazon c4">♡</div>
-
-<!-- AUDIOS -->
-
-<audio id="mar" loop>
-    <source src="mar.mpeg" type="audio/mpeg">
-</audio>
-
-<audio id="papel">
-    <source src="papel.mpeg" type="audio/mpeg">
-</audio>
-
+<!-- SOBRE -->
 
 <div class="contenedor" id="contenedor">
 
-    <!-- SOBRE -->
-
     <div class="sobre" id="sobre">
 
-        <div class="cuerpo"></div>
+        <div class="tapa" id="tapa"></div>
 
-        <div class="tapa"></div>
-
-        <div class="corazonSobre">
+        <div class="corazon" id="corazon">
             💌
         </div>
 
-        <div class="textoSobre">
-            Para ti, con cariño ♡
-        </div>
-
-    </div>
-
-
-    <!-- CARTA -->
-
-    <div class="carta" id="carta">
-
-        <button class="cerrar" id="cerrar">
-            ×
-        </button>
-
-        <div class="titulo">
-            Para ti, Nahomi 💗
-        </div>
-
-        <p>
-            Ojalá cuando leas esto puedas sentir aunque sea un poquito
-            de todo el cariño con el que hice esta pequeña sorpresa para ti.
-        </p>
-
-        <p>
-            Hay cosas que a veces son difíciles de decir en persona,
-            así que preferí escribirlas aquí, tranquilamente y desde el corazón.
-        </p>
-
-        <p>
-            Quiero que sepas que eres una persona muy especial para mí.
-            Hemos compartido momentos que guardo con muchísimo cariño
-            y que significaron más de lo que probablemente imaginas.
-        </p>
-
-        <p>
-            No hice esto esperando nada a cambio.
-            Solamente quería regalarte un pequeño momento bonito
-            y recordarte que hay alguien que te desea cosas muy bonitas.
-        </p>
-
-        <p>
-            Gracias por todos los recuerdos, por las risas,
-            por las conversaciones y por cada pequeño momento
-            que alguna vez nos hizo felices.
-        </p>
-
-        <p>
-            Espero que la vida te regale muchísimas razones para sonreír,
-            que cumplas todo aquello que sueñas y que nunca olvides
-            lo mucho que vales.
-        </p>
-
-        <p>
-            Y si algún día vuelves a pensar en mí,
-            espero que sea con una sonrisa.
-        </p>
-
-        <div class="firma">
-            Con mucho cariño ♡
-            <br>
-            Fer
-        </div>
-
-    </div>
-
-    <div class="instruccion">
-        Toca el sobre 💌
     </div>
 
 </div>
+
+<div class="instruccion" id="instruccion">
+    Toca el sobre 💕
+</div>
+
+
+<!-- CARTA -->
+
+<div class="carta" id="carta">
+
+    <div class="texto" id="texto"></div>
+
+    <div class="firma">
+        Con amor, Daniela 💕
+    </div>
+
+</div>
+
+
+<!-- AUDIOS -->
+
+<audio id="mar" loop preload="auto">
+    <source src="mar.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="papel" preload="auto">
+    <source src="papel.mp3" type="audio/mpeg">
+</audio>
 
 
 <script>
 
 const contenedor = document.getElementById("contenedor");
 const sobre = document.getElementById("sobre");
+const tapa = document.getElementById("tapa");
 const carta = document.getElementById("carta");
-const cerrar = document.getElementById("cerrar");
+const texto = document.getElementById("texto");
+const corazon = document.getElementById("corazon");
+const instruccion = document.getElementById("instruccion");
 
 const mar = document.getElementById("mar");
 const papel = document.getElementById("papel");
 
+let abierta = false;
+let escribiendo = false;
 
-/* Abrir carta */
 
-sobre.addEventListener("click", function() {
+/* =========================
+   MENSAJE
+========================= */
 
-    contenedor.classList.add("abierto");
+const mensaje = `Ojitos,
 
-    // Sonido del papel
+sé que no estamos en plan de nada y así, pero quiero dedicarte algo que recuerdes siempre.
+
+No estamos juntas presencialmente, pero no es una excusa para no hacer cosas por la persona que quelessh. 🥰💕
+
+Esto es una pequeña muestra de mi amor por ti.
+
+Sé que tal vez no te sepas expresar y todo eso, pero yo sé que puedo lograr que lo hagas conmigo. Solo se necesita tiempo y mucho, muchooo cariño.
+
+Espero y esto lo disfrutes mucho porque lo hice por muchooo cariño y NO TE SALTES NADA porque aún faltan eeeh. 🫰🏽
+
+Te amo 💕`;
+
+
+/* =========================
+   ABRIR CARTA
+========================= */
+
+contenedor.addEventListener("click", function(e){
+
+    if(abierta) return;
+
+    abierta = true;
+
+    /* detener animación */
+
+    sobre.style.animation = "none";
+
+    /* abrir tapa */
+
+    tapa.style.transform = "rotateX(180deg)";
+
+    /* quitar corazón */
+
+    corazon.style.opacity = "0";
+
+    /* sonido del papel */
+
     papel.currentTime = 0;
-    papel.play().catch(() => {});
 
-    // Sonido del mar bajito
+    papel.volume = 0.8;
+
+    papel.play().catch(()=>{});
+
+    /* sonido del mar */
+
     mar.volume = 0.12;
-    mar.play().catch(() => {});
+
+    mar.play().catch(()=>{});
+
+    /* desaparecer sobre */
+
+    setTimeout(()=>{
+
+        contenedor.classList.add("oculto");
+
+    },700);
+
+
+    /* aparecer carta */
+
+    setTimeout(()=>{
+
+        carta.classList.add("abierta");
+
+        instruccion.style.display="none";
+
+        escribir();
+
+    },500);
 
 });
 
 
-/* Cerrar carta */
+/* =========================
+   ESCRITURA
+========================= */
 
-cerrar.addEventListener("click", function(event) {
+function escribir(){
 
-    event.stopPropagation();
+    if(escribiendo) return;
 
-    contenedor.classList.remove("abierto");
+    escribiendo=true;
 
-});
+    texto.innerHTML="";
 
+    let i=0;
 
-/* También se puede cerrar tocando fuera de la carta */
+    function escribirCaracter(){
 
-carta.addEventListener("click", function(event) {
+        if(i < mensaje.length){
 
-    if (event.target === carta) {
-        contenedor.classList.remove("abierto");
+            texto.textContent += mensaje.charAt(i);
+
+            i++;
+
+            setTimeout(escribirCaracter,22);
+
+        }else{
+
+            escribiendo=false;
+
+        }
+
     }
+
+    escribirCaracter();
+
+}
+
+
+/* =========================
+   CERRAR CON OTRO CLIC
+========================= */
+
+carta.addEventListener("click", function(){
+
+    if(escribiendo) return;
+
+    carta.classList.remove("abierta");
+
+    mar.pause();
+
+    setTimeout(()=>{
+
+        contenedor.classList.remove("oculto");
+
+        sobre.style.animation = "flotar 3s ease-in-out infinite";
+
+        tapa.style.transform = "rotateX(0deg)";
+
+        corazon.style.opacity = "1";
+
+        instruccion.style.display="block";
+
+        abierta=false;
+
+    },1000);
 
 });
 
