@@ -3,14 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Para ti 💌</title>
 
 <style>
-
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 html,body{
     margin:0;
@@ -20,67 +16,51 @@ html,body{
 }
 
 body{
-    font-family:Georgia, serif;
     background:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,.8), transparent 25%),
-        linear-gradient(135deg,#dff6ff,#fff4e6);
+        radial-gradient(circle at 20% 20%,rgba(255,255,255,.8),transparent 28%),
+        linear-gradient(135deg,#dff6ff,#fff3e8);
     display:flex;
     justify-content:center;
     align-items:center;
+    font-family:Georgia,serif;
 }
 
-/* =========================
-   FONDO
-========================= */
-
+/* Fondo */
 .fondo{
     position:fixed;
     inset:0;
-    overflow:hidden;
     pointer-events:none;
 }
 
-.burbujas{
-    position:absolute;
+/* SOBRE */
+.escena{
     width:100%;
     height:100%;
-    background:
-        radial-gradient(circle at 15% 20%,rgba(255,255,255,.35),transparent 4%),
-        radial-gradient(circle at 80% 30%,rgba(255,255,255,.3),transparent 5%),
-        radial-gradient(circle at 40% 80%,rgba(255,255,255,.25),transparent 4%);
-}
-
-/* =========================
-   SOBRE
-========================= */
-
-.contenedor{
-    position:relative;
-    width:340px;
-    height:250px;
     display:flex;
     justify-content:center;
     align-items:center;
-    cursor:pointer;
-    z-index:10;
+    position:relative;
 }
 
 .sobre{
-    position:relative;
     width:300px;
     height:190px;
-    background:linear-gradient(145deg,#fffafa,#f1dada);
-    border-radius:5px;
-    box-shadow:
-        0 20px 40px rgba(0,0,0,.18),
-        inset 0 0 20px rgba(255,255,255,.7);
-    transition:transform .8s ease;
+    position:relative;
+    cursor:pointer;
     animation:flotar 3s ease-in-out infinite;
+    transition:opacity .7s,transform .7s;
 }
 
-/* parte frontal */
+.cuerpo{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(145deg,#fffaf7,#efd3d3);
+    border-radius:6px;
+    box-shadow:0 20px 40px rgba(0,0,0,.2);
+    overflow:hidden;
+}
 
-.sobre::after{
+.cuerpo:after{
     content:"";
     position:absolute;
     left:0;
@@ -89,258 +69,158 @@ body{
     height:0;
     border-left:150px solid transparent;
     border-right:150px solid transparent;
-    border-bottom:100px solid #e8c6c6;
+    border-bottom:105px solid #e7c2c4;
 }
-
-/* lados */
-
-.sobre::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:
-        linear-gradient(145deg,transparent 49%,rgba(190,150,150,.35) 50%,transparent 51%),
-        linear-gradient(215deg,transparent 49%,rgba(190,150,150,.35) 50%,transparent 51%);
-    border-radius:5px;
-}
-
-/* tapa del sobre */
 
 .tapa{
     position:absolute;
-    top:0;
     left:0;
+    top:0;
     width:0;
     height:0;
     border-left:150px solid transparent;
     border-right:150px solid transparent;
-    border-top:100px solid #f5dddd;
+    border-top:105px solid #f3d7d7;
     transform-origin:top center;
     transition:transform 1s ease;
     z-index:5;
-    filter:drop-shadow(0 3px 2px rgba(0,0,0,.08));
 }
-
-/* corazón */
 
 .corazon{
     position:absolute;
-    z-index:7;
+    z-index:8;
     left:50%;
-    top:53%;
+    top:54%;
     transform:translate(-50%,-50%);
-    font-size:45px;
-    filter:drop-shadow(0 5px 5px rgba(0,0,0,.15));
-    transition:opacity .4s ease;
+    font-size:43px;
+    animation:latido 1.4s infinite;
 }
 
-/* movimiento del sobre */
+.instruccion{
+    position:absolute;
+    bottom:35px;
+    left:50%;
+    transform:translateX(-50%);
+    color:#74555a;
+    font-size:15px;
+    animation:pulso 2s infinite alternate;
+}
 
 @keyframes flotar{
-
-    0%,100%{
-        transform:translateY(0) rotate(0deg);
-    }
-
-    50%{
-        transform:translateY(-9px) rotate(1deg);
-    }
-
+    0%,100%{transform:translateY(0) rotate(0)}
+    50%{transform:translateY(-9px) rotate(1deg)}
 }
 
-/* =========================
-   CARTA
-========================= */
+@keyframes latido{
+    0%,100%{transform:translate(-50%,-50%) scale(1)}
+    50%{transform:translate(-50%,-50%) scale(1.15)}
+}
 
+@keyframes pulso{
+    from{opacity:.5}
+    to{opacity:1}
+}
+
+/* CARTA */
 .carta{
     position:fixed;
-    z-index:30;
-
+    z-index:20;
     width:min(88vw,600px);
     height:min(82vh,720px);
+    padding:50px 45px;
 
     background:
-        linear-gradient(rgba(255,255,255,.25),rgba(255,255,255,.25)),
         repeating-linear-gradient(
             0deg,
-            rgba(120,80,40,.025) 0px,
-            rgba(120,80,40,.025) 1px,
+            rgba(120,90,50,.025) 0,
+            rgba(120,90,50,.025) 1px,
             transparent 1px,
-            transparent 4px
+            transparent 5px
         ),
-        #fffdf5;
+        #fffdf4;
 
     box-shadow:
-        0 30px 70px rgba(0,0,0,.35),
-        inset 0 0 45px rgba(150,120,80,.08);
+        0 30px 70px rgba(0,0,0,.32),
+        inset 0 0 45px rgba(130,100,60,.08);
 
-    padding:55px 50px;
+    clip-path:polygon(
+        1% 1%,99% 0%,100% 98%,
+        98% 100%,1% 99%,0% 3%
+    );
 
     opacity:0;
     pointer-events:none;
 
     transform:
         perspective(1200px)
-        rotateX(-80deg)
+        rotateX(-85deg)
         rotateY(8deg)
         translateY(80px)
-        scale(.75);
+        scale(.7);
 
     transform-origin:top center;
 
     transition:
         transform 1.2s cubic-bezier(.2,.8,.2,1),
         opacity .5s ease;
-
-    overflow:hidden;
-
-    /* borde ligeramente irregular */
-    clip-path:polygon(
-        1% 1%,
-        99% 0%,
-        100% 99%,
-        0% 100%,
-        0% 3%
-    );
 }
 
 .carta.abierta{
-
     opacity:1;
-
     pointer-events:auto;
-
     transform:
         perspective(1200px)
-        rotateX(0deg)
-        rotateY(0deg)
+        rotateX(0)
+        rotateY(0)
         translateY(0)
         scale(1);
-
 }
 
-/* textura del papel */
-
-.carta::before{
-
+/* pequeño pliegue */
+.carta:before{
     content:"";
-
     position:absolute;
-    inset:0;
-
+    left:0;
+    right:0;
+    top:0;
+    height:30%;
+    background:linear-gradient(
+        to bottom,
+        rgba(100,70,40,.06),
+        transparent
+    );
+    opacity:.45;
     pointer-events:none;
-
-    background:
-        radial-gradient(
-            circle at 20% 30%,
-            rgba(120,90,50,.07),
-            transparent 18%
-        ),
-        radial-gradient(
-            circle at 80% 70%,
-            rgba(120,90,50,.05),
-            transparent 20%
-        );
-
 }
-
-/* =========================
-   TEXTO
-========================= */
 
 .texto{
-
     position:relative;
-
-    width:100%;
-    height:100%;
-
+    z-index:2;
     color:#443838;
-
     font-family:
         "Segoe Print",
         "Bradley Hand",
-        "Comic Sans MS",
         cursive;
-
-    font-size:clamp(15px,2.5vw,21px);
-
-    line-height:1.8;
-
-    text-align:left;
-
+    font-size:clamp(15px,2.5vw,20px);
+    line-height:1.75;
     white-space:pre-line;
-
 }
-
-/* firma */
 
 .firma{
-
     position:absolute;
-
-    right:20px;
-    bottom:10px;
-
-    font-size:clamp(14px,2vw,18px);
-
+    right:35px;
+    bottom:22px;
+    color:#624848;
     font-family:
         "Segoe Print",
         "Bradley Hand",
         cursive;
-
+    font-size:17px;
     transform:rotate(-4deg);
-
-    color:#624848;
-
 }
 
-/* =========================
-   MENSAJE INICIAL
-========================= */
-
-.instruccion{
-
-    position:absolute;
-
-    bottom:35px;
-
-    left:50%;
-
-    transform:translateX(-50%);
-
-    color:#704f55;
-
-    font-family:
-        "Segoe Print",
-        cursive;
-
-    font-size:16px;
-
-    text-align:center;
-
-    animation:pulso 2s infinite;
-
-}
-
-@keyframes pulso{
-
-    0%,100%{
-        opacity:.55;
-    }
-
-    50%{
-        opacity:1;
-    }
-
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
+/* MÓVIL */
 @media(max-width:500px){
-
     .sobre{
         width:270px;
         height:170px;
@@ -352,66 +232,48 @@ body{
         border-top-width:90px;
     }
 
-    .sobre::after{
+    .cuerpo:after{
         border-left-width:135px;
         border-right-width:135px;
-        border-bottom-width:90px;
+        border-bottom-width:95px;
     }
 
     .carta{
-
         width:90vw;
         height:78vh;
-
-        padding:40px 28px;
-
+        padding:38px 27px;
     }
 
     .texto{
-
         font-size:15px;
         line-height:1.65;
-
     }
 
+    .firma{
+        right:22px;
+        bottom:18px;
+        font-size:14px;
+    }
 }
-
-/* ocultar sobre */
-
-.oculto{
-
-    opacity:0;
-    pointer-events:none;
-
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="fondo">
-    <div class="burbujas"></div>
-</div>
+<div class="fondo"></div>
 
-<!-- SOBRE -->
-
-<div class="contenedor" id="contenedor">
+<div class="escena" id="escena">
 
     <div class="sobre" id="sobre">
-
+        <div class="cuerpo"></div>
         <div class="tapa" id="tapa"></div>
-
-        <div class="corazon" id="corazon">
-            💌
-        </div>
-
+        <div class="corazon" id="corazon">💌</div>
     </div>
 
-</div>
+    <div class="instruccion" id="instruccion">
+        Toca el sobre 💕
+    </div>
 
-<div class="instruccion" id="instruccion">
-    Toca el sobre 💕
 </div>
 
 
@@ -428,36 +290,49 @@ body{
 </div>
 
 
-<!-- AUDIOS -->
-
-<audio id="mar" loop preload="auto">
-    <source src="mar.mp3" type="audio/mpeg">
-</audio>
-
-<audio id="papel" preload="auto">
-    <source src="papel.mp3" type="audio/mpeg">
-</audio>
-
-
 <script>
 
-const contenedor = document.getElementById("contenedor");
+/* =========================
+   NOMBRES DE TUS AUDIOS
+========================= */
+
+const archivoMar =
+"WhatsApp Audio 2026-09-07 at 10.13.51 PM (1).mpeg";
+
+const archivoPapel =
+"WhatsApp Audio 2026-09-17 at 10.13.52 PM.mpeg";
+
+
+/* =========================
+   CREAR AUDIOS
+========================= */
+
+const mar = new Audio(encodeURI(archivoMar));
+const papel = new Audio(encodeURI(archivoPapel));
+
+mar.loop = true;
+mar.volume = 0.12;
+papel.volume = 0.8;
+
+
+/* =========================
+   ELEMENTOS
+========================= */
+
+const escena = document.getElementById("escena");
 const sobre = document.getElementById("sobre");
 const tapa = document.getElementById("tapa");
-const carta = document.getElementById("carta");
-const texto = document.getElementById("texto");
 const corazon = document.getElementById("corazon");
 const instruccion = document.getElementById("instruccion");
-
-const mar = document.getElementById("mar");
-const papel = document.getElementById("papel");
+const carta = document.getElementById("carta");
+const texto = document.getElementById("texto");
 
 let abierta = false;
 let escribiendo = false;
 
 
 /* =========================
-   MENSAJE
+   TU MENSAJE
 ========================= */
 
 const mensaje = `Ojitos,
@@ -476,67 +351,56 @@ Te amo 💕`;
 
 
 /* =========================
-   ABRIR CARTA
+   ABRIR
 ========================= */
 
-contenedor.addEventListener("click", function(e){
+sobre.addEventListener("click",function(){
 
     if(abierta) return;
 
-    abierta = true;
+    abierta=true;
 
-    /* detener animación */
+    sobre.style.animation="none";
 
-    sobre.style.animation = "none";
+    tapa.style.transform="rotateX(180deg)";
+    corazon.style.opacity="0";
 
-    /* abrir tapa */
+    instruccion.style.display="none";
 
-    tapa.style.transform = "rotateX(180deg)";
+    /* papel */
 
-    /* quitar corazón */
-
-    corazon.style.opacity = "0";
-
-    /* sonido del papel */
-
-    papel.currentTime = 0;
-
-    papel.volume = 0.8;
-
+    papel.currentTime=0;
     papel.play().catch(()=>{});
 
-    /* sonido del mar */
+    /* mar */
 
-    mar.volume = 0.12;
-
+    mar.currentTime=0;
     mar.play().catch(()=>{});
 
-    /* desaparecer sobre */
+    /* sacar el sobre */
 
     setTimeout(()=>{
 
-        contenedor.classList.add("oculto");
+        escena.style.opacity="0";
+        escena.style.pointerEvents="none";
 
-    },700);
+    },600);
 
-
-    /* aparecer carta */
+    /* mostrar carta */
 
     setTimeout(()=>{
 
         carta.classList.add("abierta");
 
-        instruccion.style.display="none";
-
         escribir();
 
-    },500);
+    },700);
 
 });
 
 
 /* =========================
-   ESCRITURA
+   ESCRIBIR
 ========================= */
 
 function escribir(){
@@ -545,11 +409,11 @@ function escribir(){
 
     escribiendo=true;
 
-    texto.innerHTML="";
+    texto.textContent="";
 
     let i=0;
 
-    function escribirCaracter(){
+    function siguiente(){
 
         if(i < mensaje.length){
 
@@ -557,7 +421,7 @@ function escribir(){
 
             i++;
 
-            setTimeout(escribirCaracter,22);
+            setTimeout(siguiente,24);
 
         }else{
 
@@ -567,7 +431,7 @@ function escribir(){
 
     }
 
-    escribirCaracter();
+    siguiente();
 
 }
 
@@ -576,7 +440,10 @@ function escribir(){
    CERRAR CON OTRO CLIC
 ========================= */
 
-carta.addEventListener("click", function(){
+carta.addEventListener("click",function(){
+
+    /* mientras se está escribiendo,
+       no cerramos accidentalmente */
 
     if(escribiendo) return;
 
@@ -586,13 +453,14 @@ carta.addEventListener("click", function(){
 
     setTimeout(()=>{
 
-        contenedor.classList.remove("oculto");
+        escena.style.opacity="1";
+        escena.style.pointerEvents="auto";
 
-        sobre.style.animation = "flotar 3s ease-in-out infinite";
+        tapa.style.transform="rotateX(0deg)";
+        corazon.style.opacity="1";
 
-        tapa.style.transform = "rotateX(0deg)";
-
-        corazon.style.opacity = "1";
+        sobre.style.animation=
+            "flotar 3s ease-in-out infinite";
 
         instruccion.style.display="block";
 
