@@ -6,6 +6,7 @@
 <title>Para ti 💌</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -13,226 +14,399 @@
 body {
     margin: 0;
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     overflow: hidden;
     font-family: Georgia, serif;
     background: linear-gradient(135deg, #dff6ff, #fff4e6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* MAR */
-#mar {
+/* Fondo */
+
+.fondo {
     position: fixed;
     inset: 0;
-    z-index: -2;
     background:
-        linear-gradient(rgba(255,255,255,.35), rgba(255,255,255,.35)),
-        url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80")
-        center/cover;
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.8), transparent 30%),
+        radial-gradient(circle at 80% 80%, rgba(255,255,255,.7), transparent 30%);
+    z-index: -1;
 }
 
-/* SOBRE */
+/* Corazones */
+
+.corazon {
+    position: fixed;
+    font-size: 20px;
+    opacity: .35;
+    animation: flotar 7s linear infinite;
+}
+
+.c1 { left: 10%; animation-delay: 0s; }
+.c2 { left: 25%; animation-delay: 2s; }
+.c3 { left: 70%; animation-delay: 1s; }
+.c4 { left: 85%; animation-delay: 3s; }
+
+@keyframes flotar {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(-120vh) rotate(360deg);
+    }
+}
+
+/* Contenedor */
+
+.contenedor {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Sobre */
+
 .sobre {
-    width: 330px;
-    height: 220px;
+    width: 300px;
+    height: 210px;
     position: relative;
     cursor: pointer;
-    transition: transform .5s ease;
-    animation: flotar 3s ease-in-out infinite;
+    transition: transform .4s ease;
 }
 
 .sobre:hover {
     transform: scale(1.04);
 }
 
-@keyframes flotar {
-    0%,100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-10px) rotate(1deg); }
-}
+/* Cuerpo del sobre */
 
-.base {
+.cuerpo {
     position: absolute;
-    inset: 0;
-    background: #f7dfbd;
+    width: 100%;
+    height: 100%;
+    background: #fffaf3;
     border-radius: 8px;
     box-shadow: 0 15px 35px rgba(0,0,0,.2);
+    overflow: hidden;
 }
 
-.base::before,
-.base::after {
+/* Parte triangular */
+
+.cuerpo::before {
     content: "";
     position: absolute;
-    bottom: 0;
-    width: 50%;
-    height: 100%;
-    background: #efd0a7;
-}
-
-.base::before {
     left: 0;
-    clip-path: polygon(0 0, 100% 100%, 0 100%);
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-bottom: 110px solid #f4d7c5;
 }
 
-.base::after {
-    right: 0;
-    clip-path: polygon(100% 0, 100% 100%, 0 100%);
-}
+/* Tapa */
 
-/* TAPA */
 .tapa {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 120px;
-    background: #f3d5ad;
-    clip-path: polygon(0 0, 50% 100%, 100% 0);
+    width: 0;
+    height: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 115px solid #f1cbb7;
     transform-origin: top;
     transition: transform 1s ease;
-    z-index: 4;
+    z-index: 5;
 }
 
-/* CARTA */
+/* Corazón */
+
+.corazonSobre {
+    position: absolute;
+    z-index: 6;
+    left: 50%;
+    top: 52%;
+    transform: translate(-50%, -50%);
+    font-size: 42px;
+    animation: latido 1.5s infinite;
+}
+
+@keyframes latido {
+
+    0%,100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.15);
+    }
+}
+
+/* Texto */
+
+.textoSobre {
+    position: absolute;
+    bottom: 18px;
+    width: 100%;
+    text-align: center;
+    color: #9c6b5b;
+    font-size: 15px;
+    z-index: 7;
+}
+
+/* Carta */
+
 .carta {
     position: absolute;
-    width: 285px;
-    height: 350px;
-    background: #fffaf0;
-    left: 22px;
-    top: -55px;
-    padding: 35px 25px;
-    border-radius: 5px;
-    box-shadow: 0 12px 30px rgba(0,0,0,.25);
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 1s ease;
-    z-index: 2;
+    width: min(88%, 520px);
+    height: min(78vh, 650px);
+    background: #fffdf7;
+    border-radius: 8px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.25);
+    padding: 35px 30px;
     overflow-y: auto;
+    opacity: 0;
+    transform: scale(.4) translateY(100px);
+    pointer-events: none;
+    transition: all 1s ease;
+    z-index: 10;
 }
 
-.carta h1 {
-    text-align: center;
-    font-size: 25px;
-    color: #426b75;
-    margin-top: 0;
+/* Carta abierta */
+
+.abierto .sobre {
+    transform: scale(.2);
+    opacity: 0;
+    pointer-events: none;
 }
 
-.carta p {
-    font-size: 16px;
-    line-height: 1.7;
-    color: #4d4d4d;
-}
-
-.firma {
-    text-align: right;
-    margin-top: 25px;
-    font-style: italic;
-}
-
-/* ABIERTO */
 .abierto .tapa {
     transform: rotateX(180deg);
-    z-index: 1;
 }
 
 .abierto .carta {
     opacity: 1;
-    transform: translateY(-100px);
-    z-index: 5;
+    transform: scale(1) translateY(0);
+    pointer-events: auto;
 }
 
-/* INDICACIÓN */
-.mensaje {
-    position: absolute;
-    bottom: -70px;
-    width: 100%;
+/* Texto de la carta */
+
+.titulo {
     text-align: center;
-    color: white;
-    text-shadow: 0 2px 5px rgba(0,0,0,.5);
-    font-family: Arial, sans-serif;
-    font-size: 14px;
+    color: #a75d6b;
+    font-size: 27px;
+    margin-bottom: 25px;
 }
+
+.carta p {
+    color: #4d4141;
+    font-size: 17px;
+    line-height: 1.8;
+    margin-bottom: 18px;
+}
+
+.firma {
+    text-align: right;
+    margin-top: 35px;
+    color: #a75d6b;
+    font-size: 20px;
+    font-style: italic;
+}
+
+/* Instrucción */
+
+.instruccion {
+    position: absolute;
+    bottom: 35px;
+    color: #8f7770;
+    font-size: 14px;
+    animation: aparecer 2s infinite alternate;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: .4;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Botón de cerrar */
+
+.cerrar {
+    position: absolute;
+    right: 18px;
+    top: 15px;
+    border: none;
+    background: transparent;
+    font-size: 25px;
+    color: #a75d6b;
+    cursor: pointer;
+}
+
 </style>
 </head>
 
 <body>
 
-<div id="mar"></div>
+<div class="fondo"></div>
 
-<div class="sobre" id="sobre">
+<div class="corazon c1">♡</div>
+<div class="corazon c2">♡</div>
+<div class="corazon c3">♡</div>
+<div class="corazon c4">♡</div>
 
-    <div class="carta">
-        <h1>Para ti 🤍</h1>
+<!-- AUDIOS -->
 
-        <p>
-            Hay cosas que a veces no sé cómo decir,
-            así que decidí escribirlas.
-        </p>
+<audio id="mar" loop>
+    <source src="mar.mpeg" type="audio/mpeg">
+</audio>
 
-        <p>
-            Quería hacerte algo diferente,
-            algo que pudieras abrir poquito a poquito
-            y que te sacara una sonrisa.
-        </p>
+<audio id="papel">
+    <source src="papel.mpeg" type="audio/mpeg">
+</audio>
 
-        <p>
-            Gracias por todos esos momentos,
-            por las canciones, las palabras
-            y por formar parte de mi historia.
-        </p>
 
-        <p class="firma">
-            Con cariño,<br>
-            Fer 💌
-        </p>
+<div class="contenedor" id="contenedor">
+
+    <!-- SOBRE -->
+
+    <div class="sobre" id="sobre">
+
+        <div class="cuerpo"></div>
+
+        <div class="tapa"></div>
+
+        <div class="corazonSobre">
+            💌
+        </div>
+
+        <div class="textoSobre">
+            Para ti, con cariño ♡
+        </div>
+
     </div>
 
-    <div class="base"></div>
-    <div class="tapa"></div>
 
-    <div class="mensaje">
+    <!-- CARTA -->
+
+    <div class="carta" id="carta">
+
+        <button class="cerrar" id="cerrar">
+            ×
+        </button>
+
+        <div class="titulo">
+            Para ti, Nahomi 💗
+        </div>
+
+        <p>
+            Ojalá cuando leas esto puedas sentir aunque sea un poquito
+            de todo el cariño con el que hice esta pequeña sorpresa para ti.
+        </p>
+
+        <p>
+            Hay cosas que a veces son difíciles de decir en persona,
+            así que preferí escribirlas aquí, tranquilamente y desde el corazón.
+        </p>
+
+        <p>
+            Quiero que sepas que eres una persona muy especial para mí.
+            Hemos compartido momentos que guardo con muchísimo cariño
+            y que significaron más de lo que probablemente imaginas.
+        </p>
+
+        <p>
+            No hice esto esperando nada a cambio.
+            Solamente quería regalarte un pequeño momento bonito
+            y recordarte que hay alguien que te desea cosas muy bonitas.
+        </p>
+
+        <p>
+            Gracias por todos los recuerdos, por las risas,
+            por las conversaciones y por cada pequeño momento
+            que alguna vez nos hizo felices.
+        </p>
+
+        <p>
+            Espero que la vida te regale muchísimas razones para sonreír,
+            que cumplas todo aquello que sueñas y que nunca olvides
+            lo mucho que vales.
+        </p>
+
+        <p>
+            Y si algún día vuelves a pensar en mí,
+            espero que sea con una sonrisa.
+        </p>
+
+        <div class="firma">
+            Con mucho cariño ♡
+            <br>
+            Fer
+        </div>
+
+    </div>
+
+    <div class="instruccion">
         Toca el sobre 💌
     </div>
 
 </div>
 
-<audio id="marAudio" loop>
-    <source src="WhatsApp Audio 2026-09-07 at 10.13.51 PM.mpeg" type="audio/mpeg">
-</audio>
-
-<audio id="papelAudio">
-    <source src="WhatsApp Audio 2026-09-07 at 10.13.52 PM.mpeg" type="audio/mpeg">
-</audio>
 
 <script>
 
+const contenedor = document.getElementById("contenedor");
 const sobre = document.getElementById("sobre");
-const marAudio = document.getElementById("marAudio");
-const papelAudio = document.getElementById("papelAudio");
+const carta = document.getElementById("carta");
+const cerrar = document.getElementById("cerrar");
 
-let abierto = false;
+const mar = document.getElementById("mar");
+const papel = document.getElementById("papel");
 
-sobre.addEventListener("click", () => {
 
-    abierto = !abierto;
+/* Abrir carta */
 
-    if (abierto) {
+sobre.addEventListener("click", function() {
 
-        sobre.classList.add("abierto");
+    contenedor.classList.add("abierto");
 
-        papelAudio.currentTime = 0;
-        papelAudio.play();
+    // Sonido del papel
+    papel.currentTime = 0;
+    papel.play().catch(() => {});
 
-        marAudio.volume = 0.12;
-        marAudio.play();
+    // Sonido del mar bajito
+    mar.volume = 0.12;
+    mar.play().catch(() => {});
 
-    } else {
+});
 
-        sobre.classList.remove("abierto");
 
-        papelAudio.currentTime = 0;
-        papelAudio.play();
+/* Cerrar carta */
+
+cerrar.addEventListener("click", function(event) {
+
+    event.stopPropagation();
+
+    contenedor.classList.remove("abierto");
+
+});
+
+
+/* También se puede cerrar tocando fuera de la carta */
+
+carta.addEventListener("click", function(event) {
+
+    if (event.target === carta) {
+        contenedor.classList.remove("abierto");
     }
 
 });
